@@ -11,4 +11,4 @@ def uppercase(str):
 
         char = chr(asci)
         result += char
-    print(result)
+    print("{}" .format(result))
