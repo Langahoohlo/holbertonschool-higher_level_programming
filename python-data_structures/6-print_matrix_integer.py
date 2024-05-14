@@ -4,7 +4,7 @@ def print_matrix_integer(matrix=[[]]):
     length, i, = len(matrix), 0
 
     if len(matrix) == 0:
-        print("")
+        print("\n")
 
     while i < length:
         row, j = matrix[i], 0
