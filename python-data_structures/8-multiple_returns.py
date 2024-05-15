@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 
 def multiple_returns(sentence):
-    if len(sentence) == 0:
-        None
+    if sentence == "":
+        length, first = 0, None
 
     else:
         length = len(sentence)
@@ -10,3 +10,7 @@ def multiple_returns(sentence):
         first = sentence[0]
 
     return length, first
+
+sentence = ""
+length, first = multiple_returns(sentence)
+print("Length: {:d} - First character: {}".format(length, first))
