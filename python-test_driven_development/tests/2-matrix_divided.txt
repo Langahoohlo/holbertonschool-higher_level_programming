@@ -32,5 +32,5 @@ TypeError: Each row of the matrix must have the same size
 >>> matrix_divided([[1, 2, 3], [4, 8, 9]], float('inf'))
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
-TypeError: [[0.0, 0.0, 0.0,], [0.0, 0.0, 0.0]]
+ValueError: [[0.0, 0.0, 0.0,], [0.0, 0.0, 0.0]]
 
