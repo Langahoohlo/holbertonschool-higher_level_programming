@@ -1,0 +1,19 @@
+Function to add 2 integers
+
+Examples:
+>>> add_integer = __import__('0-add_integer').add_integer
+>>> add_integer(3, 5)
+8
+
+>>> add_integer = __import__('0-add_integer').add_integer
+>>> add_integer(5, "c")
+Traceback (most recent call last):
+    File "<stdin>", line 1, in <module>
+TypeError: b must be an integer
+
+>>> add_integer = __import__('0-add_integer').add_integer
+>>> add_integer("l", 7)
+Traceback (most recent call last):
+    File "<stdin>", line 1, in <module>
+TypeError: a must be an integer
+
