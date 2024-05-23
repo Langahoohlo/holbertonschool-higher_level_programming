@@ -1,27 +1,26 @@
-Function to add 2 integers
-
+Add two numbers and return result.
 Examples:
 >>> add_integer = __import__('0-add_integer').add_integer
->>> add_integer(3, 5)
-8
+>>> add_integer(2, 5)
+7
 
 >>> add_integer = __import__('0-add_integer').add_integer
->>> add_integer(5, "c")
+>>> add_integer(2, "c")
 Traceback (most recent call last):
-    File "<stdin>", line 1, in <module>
+  File "<stdin>", line 1, in <module>
 TypeError: b must be an integer
 
 >>> add_integer = __import__('0-add_integer').add_integer
->>> add_integer("l", 7)
+>>> add_integer("b", 4)
 Traceback (most recent call last):
-    File "<stdin>", line 1, in <module>
+  File "<stdin>", line 1, in <module>
 TypeError: a must be an integer
 
 >>> add_integer(float('inf'))
 Traceback (most recent call last):
 OverflowError: cannot convert float infinity to integer
      
->>> add_integer(9, float('inf'))
+>>> add_integer(2, float('inf'))
 Traceback (most recent call last):
 OverflowError: cannot convert float infinity to integer
 
@@ -29,21 +28,13 @@ OverflowError: cannot convert float infinity to integer
 Traceback (most recent call last):
 ValueError: cannot convert float NaN to integer
 
->>> add_integer(8, float('nan'))
+>>> add_integer(2, float('nan'))
 Traceback (most recent call last):
 ValueError: cannot convert float NaN to integer
 
->>> add_integer(None, 2)
+>>> add_integer(2, None)
 Traceback (most recent call last):
-ValueError: missing one argument
-
->>> add_integer(4, None)
-Traceback (most recent call last):
-ValueError: missing one argument
-
->>> add_integer(None, None)
-Traceback (most recent call last):
-ValueError: missing both arguments
+ValueError: b must be an integer
 
 >>> add_integer(None)
 Traceback (most recent call last):
