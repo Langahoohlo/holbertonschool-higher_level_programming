@@ -45,3 +45,6 @@ ValueError: missing one argument
 Traceback (most recent call last):
 ValueError: missing both arguments
 
+>>> add_integer(None)
+Traceback (most recent call last):
+ValueError: a must be an integer
