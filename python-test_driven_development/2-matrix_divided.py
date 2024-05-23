@@ -15,6 +15,7 @@
 
 """
 
+
 def matrix_divided(matrix, div):
     """
         Args:
@@ -24,9 +25,15 @@ def matrix_divided(matrix, div):
         Returns:
             New matrix with divided elements.
     """
-    if not all(isinstance(row, list) and all(isinstance(element, 
-        (int, float)) for element in row) for row in matrix):
-            raise TypeError("matrix must be a matrix (list of lists) of integers/floats")
+    if not all(
+            isinstance(row, list)
+            and all(
+                isinstance(element, (int, float))
+                for element in row
+                )
+            for row in matrix
+            ):
+        raise TypeError("matrix must be a matrix of integers/floats")
     if div == 0:
         raise ZeroDivisionError("division by zero")
     if not isinstance(div, (int, float)):
@@ -35,5 +42,5 @@ def matrix_divided(matrix, div):
         raise TypeError("Each row of the matrix must have the same size")
     if div == float('inf'):
         raise ValueError("[[0.0, 0.0, 0.0], [0.0, 0.0, 0.0]]")
-    
-    return [[round(element / div, 2) for element in row] for row in matrix]
+
+    return [[round(element / div, 2)for element in row] for row in matrix]
