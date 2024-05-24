@@ -3,6 +3,7 @@
 This module defines a class Rectangle.
 """
 
+
 class Rectangle:
     """
     This class defines a Rectangle with width and height attributes.
@@ -12,7 +13,7 @@ class Rectangle:
         """
         Initializes an instance of Rectangle. Width and height are
         optional and default to 0.
-        
+
         Args:
             width (int): The width of the rectangle.
             height (int): The height of the rectangle.
@@ -122,4 +123,3 @@ class Rectangle:
         Prints a message when the instance is deleted.
         """
         print("Bye rectangle...")
-

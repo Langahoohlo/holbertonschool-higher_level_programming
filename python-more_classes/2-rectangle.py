@@ -3,6 +3,7 @@
 This module defines a class Rectangle.
 """
 
+
 class Rectangle:
     """
     This class defines a Rectangle with width and height attributes.
@@ -11,7 +12,7 @@ class Rectangle:
     def __init__(self, width: int = 0, height: int = 0):
         """
         Initializes an instance of Rectangle.
-        
+
         Args:
             width (int): The width of the rectangle. Defaults to 0.
             height (int): The height of the rectangle. Defaults to 0.
@@ -28,10 +29,10 @@ class Rectangle:
     def width(self, value: int) -> None:
         """
         Sets the width of the Rectangle.
-        
+
         Args:
             value (int): The width value to set.
-            
+
         Raises:
             TypeError: If width is not an integer.
             ValueError: If width is less than 0.
@@ -51,10 +52,10 @@ class Rectangle:
     def height(self, value: int) -> None:
         """
         Sets the height of the Rectangle.
-        
+
         Args:
             value (int): The height value to set.
-            
+
         Raises:
             TypeError: If height is not an integer.
             ValueError: If height is less than 0.
@@ -68,7 +69,7 @@ class Rectangle:
     def area(self) -> int:
         """
         Calculates the area of the Rectangle.
-        
+
         Returns:
             int: The area of the rectangle.
         """
@@ -77,7 +78,7 @@ class Rectangle:
     def perimeter(self) -> int:
         """
         Calculates the perimeter of the Rectangle.
-        
+
         Returns:
             int: The perimeter of the rectangle, or 0 if width or height is 0.
         """
@@ -88,7 +89,7 @@ class Rectangle:
     def __str__(self) -> str:
         """
         Returns the string representation of the Rectangle.
-        
+
         Returns:
             str: String representation of the rectangle.
         """
@@ -97,7 +98,7 @@ class Rectangle:
     def __repr__(self) -> str:
         """
         Returns the formal string representation of the Rectangle.
-        
+
         Returns:
             str: Formal string representation of the rectangle.
         """
@@ -106,24 +107,28 @@ class Rectangle:
     def __eq__(self, other) -> bool:
         """
         Checks if two Rectangle instances are equal.
-        
+
         Args:
             other (Rectangle): The other rectangle to compare with.
-            
+
         Returns:
             bool: True if rectangles are equal, False otherwise.
         """
         if isinstance(other, Rectangle):
-            return self.__width == other.__width and self.__height == other.__height
+            return (
+                    self.__width == other.__width
+                    and
+                    self.__height == other.__height
+                    )
         return False
 
     def __ne__(self, other) -> bool:
         """
         Checks if two Rectangle instances are not equal.
-        
+
         Args:
             other (Rectangle): The other rectangle to compare with.
-            
+
         Returns:
             bool: True if rectangles are not equal, False otherwise.
         """

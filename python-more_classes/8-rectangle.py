@@ -17,7 +17,7 @@ class Rectangle:
     def __init__(self, width: int = 0, height: int = 0):
         """
         Initializes an instance of Rectangle.
-        
+
         Args:
             width (int): The width of the rectangle.
             height (int): The height of the rectangle.
