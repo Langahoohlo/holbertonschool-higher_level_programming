@@ -5,4 +5,4 @@ import json
 
 def from_json_string(my_str):
     """Functon to make JSON to STRING"""
-    my_str = json.load(f)
+    return json.load(my_str)
