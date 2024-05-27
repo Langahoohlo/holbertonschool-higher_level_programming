@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """Python script to add arguments to a python list"""
-import sys
 
 
 if __name__ == "__main__":
