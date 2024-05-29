@@ -12,7 +12,7 @@ def convert_csv_to_json(csvdata):
 
     """
 
-    data = {}
+    data = []
     try:
         with open(csvdata, 'r', encoding='utf-8') as cs_v:
             csvReader = csv.DictReader(cs_v)
