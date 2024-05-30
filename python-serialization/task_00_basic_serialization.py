@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """Module to seralize json and deserialize"""
-import pickle
+import json
 
 
 def serialize_and_save_to_file(data, filename):
@@ -12,11 +12,8 @@ def serialize_and_save_to_file(data, filename):
         filename: name of file to save
     """
     
-    try:
-        with open(filename, mode='wb') as f:
-            pickle.dump(data, f)
-    except:
-        return None
+    with open(filename, mode='w', encoding="utf") as f:
+        json.dump(data, f)
 
 
 def load_and_deserialize(filename):
@@ -29,8 +26,6 @@ def load_and_deserialize(filename):
         returns python object
     """
 
-    try:
-        with open(filename, mode="rb") as f:
-            return pickle.load(f)
-    except:
-        return None
+    with open(filename, mode="r", encoding="utf-8") as f:
+        dic = json.load
+    return dic
