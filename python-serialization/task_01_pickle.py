@@ -25,12 +25,18 @@ class CustomObject:
 
     def serialize(self, filename):
         """function to serialize instance of object"""
-        with open(filename, "wb") as f:
-            pickle.dump(self, f)
+        try:
+            with open(filename, "wb") as f:
+                pickle.dump(self, f)
+        except:
+            return None
 
     @classmethod
     def deserialize(cls, filename):
         """function to return inctance of customObject"""
-        with open(filename, "rb") as f:
-            r = pickle.load(f)
-        return r
+        try:
+            with open(filename, "rb") as f:
+                r = pickle.load(f)
+            return r
+        except:
+            return None
