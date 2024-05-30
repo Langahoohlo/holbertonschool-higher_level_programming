@@ -11,9 +11,12 @@ def serialize_and_save_to_file(data, filename):
         data: python object
         filename: name of file to save
     """
-
-    with open(filename, mode='wb') as f:
-        pickle.dump(data, f)
+    
+    try:
+        with open(filename, mode='wb') as f:
+            pickle.dump(data, f)
+    except:
+        return None
 
 
 def load_and_deserialize(filename):
@@ -26,5 +29,8 @@ def load_and_deserialize(filename):
         returns python object
     """
 
-    with open(filename, mode="rb") as f:
-        return pickle.load(f)
+    try:
+        with open(filename, mode="rb") as f:
+            return pickle.load(f)
+    except:
+        return None
