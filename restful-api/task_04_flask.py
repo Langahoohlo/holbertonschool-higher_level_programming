@@ -1,13 +1,11 @@
 #!/usr/bin/python3
-"""Module to make a simple web server"""
+"""Making a basic api to send anfd get data"""
 from flask import Flask, jsonify, request
 
 
 app = Flask(__name__)
 
-users = {
-    "jane": {"name": "Jane", "age": 28, "city": "Los Angeles"}
-}
+users = {}
 
 @app.route("/")
 def home():
@@ -33,8 +31,12 @@ def get_user(username):
 def add_user():
     user_data = request.get_json()
     username = user_data.get("username")
-    if not username or username in users:
-        return jsonify({"error": "Invalid or duplicate username"}), 400
+    
+    if not username:
+        return jsonify({"error": "Username is required"}), 400
+    
+    if username in users:
+        return jsonify({"error": "Duplicate username"}), 400
     
     users[username] = {
         "name": user_data.get("name"),
@@ -42,6 +44,27 @@ def add_user():
         "city": user_data.get("city")
     }
     return jsonify({"message": "User added", "user": users[username]})
+
+@app.before_request
+def before_request_func():
+    print("This runs before each request.")
+
+@app.after_request
+def after_request_func(response):
+    print("This runs after each request.")
+    return response
+
+@app.teardown_request
+def teardown_request_func(error=None):
+    print("This runs after the request is finished, whether there was an error or not.")
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return jsonify({"error": "This page does not exist"}), 404
+
+@app.errorhandler(500)
+def internal_server_error(e):
+    return jsonify({"error": "An internal error occurred"}), 500
 
 if __name__ == "__main__":
     app.run(debug=True)
