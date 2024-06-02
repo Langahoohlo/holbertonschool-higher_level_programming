@@ -22,17 +22,20 @@ def fetch_and_save_posts():
     url = "https://jsonplaceholder.typicode.com/posts"
     response = requests.get(url)
     csv_file = 'posts.csv'
-    
-    if response.status_code == 200:
-        data = response.json()
-        print(f"Status Code: {response.status_code}")   
-        
-        keys = [{key: post[key] for key in ('id', 'title', 'body')} for post in json_data]
 
-        with open(csv_file, 'w') as file:
-            dict_writer = csv.DictWriter(file, fieldnames=keys)
-            dict_writer.writeheader()
-            dict_writer.writerows(data)
+    try:
+        res = requests.get(url)
+    except:
+        print("Failed to retrieve data")
+        return
 
-        print("json save to csv file")
+    json_data = res.json()
 
+    filtered_data = [{key: post[key] for key in ('id', 'title', 'body')} for post in json_data]
+
+    headers = ['id', 'title', 'body']
+
+    with open(csv_file, "w", newline="") as file:
+        csv_write = csv.DictWriter(file, fieldnames=headers)
+        csv_write.writeheader()
+        csv_write.writerows(filtered_data)
