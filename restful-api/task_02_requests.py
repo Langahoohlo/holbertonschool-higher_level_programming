@@ -27,7 +27,7 @@ def fetch_and_save_posts():
         data = response.json()
         print(f"Status Code: {response.status_code}")   
         
-        keys = data[0].keys()
+        keys = [{key: post[key] for key in ('id', 'title', 'body')} for post in json_data]
 
         with open(csv_file, 'w') as file:
             dict_writer = csv.DictWriter(file, fieldnames=keys)
