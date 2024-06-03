@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """A module to handle simple flask requests"""
 from flask import Flask, jsonify, request
-import json
 
 
 app = Flask(__name__)
@@ -26,26 +25,22 @@ def status():
 def user(username):
     if username in users.keys():
         return (users[username])
-    return '{"error": "User not found"}', 400
+    return '{"error": "User not found"}', 404
 
-
-@app.route('/add_user', methods=['GET', 'POST'])
+@app.route('/add_user', methods=[ 'POST'])
 def add_user():
-    if request.method == 'POST':
-        data = request.get_json()
-        response_data = data
-        username = data["username"]
-        if not username:
-            return 'username is empty', 400
-        if username in users.keys():
-            return 'username already exists', 400
-        del data["username"]
-        users[username] = data
-        response = {}
-        response["message"] = "User added"
-        response["user"] = response_data
-        return jsonify(response), 201
-    else:
-        return 'failed', 400
+    data = request.get_json()
+    response_data = data
+    username = data["username"]
+    if not username:
+        return 'username is empty', 400
+    if username in users.keys():
+        return 'username already exists', 400
+    del data["username"]
+    users[username] = data
+    response = {}
+    response["message"] = "User added"
+    response["user"] = response_data
+    return jsonify(response), 201
 
 if __name__ == "__main__": app.run()
