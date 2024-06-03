@@ -18,23 +18,23 @@ def data():
 
 @app.route('/status')
 def status():
-    return 'OK'
+    return "OK"
 
 @app.route('/users/<username>')
 def user(username):
     if username in users.keys():
         return (users[username])
-    return '{"error": "User not found"}', 404
+    return jsonify({"error": "User not found"}), 404
 
-@app.route('/add_user', methods=[ 'POST'])
+@app.route('/add_user', methods=['POST'])
 def add_user():
     data = request.get_json()
     response_data = data
     username = data["username"]
     if not username:
-        return 'username is empty', 400
+        return "username is empty", 400
     if username in users.keys():
-        return 'username already exists', 400
+        return "username already exists", 400
     del data["username"]
     users[username] = data
     response = {}
