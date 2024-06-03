@@ -6,7 +6,7 @@ import json
 
 app = Flask(__name__)
 
-users = { "jane": {"name": "Jane", "age": 28, "city": "Los Angeles"}}
+users = {}
 
 @app.route('/')
 def home():
@@ -14,7 +14,9 @@ def home():
 
 @app.route('/data')
 def data():
-    return jsonify(users)
+    if users:
+        return jsonify(users.keys())
+    return
 
 @app.route('/status')
 def status():
@@ -22,16 +24,27 @@ def status():
 
 @app.route('/users/<username>')
 def user(username):
-    return (users[username])
+    if usersname in users.keys():
+        return (users[username])
+    return '{"error": "User not found"}'
+
 
 @app.route('/add_user', methods=['GET', 'POST'])
 def add_user():
     if request.method == 'POST':
         data = request.get_json()
+        response_data = data
         username = data["username"]
+        if not username:
+            return 'username is empty'
+        if username in users.keys():
+            return 'username already exists'
         del data["username"]
         users[username] = data
-        return ("User added")
+        response = {}
+        response["message"] = "User added"
+        response["user"] = response_data
+        return
     else:
         return('failed')
 
