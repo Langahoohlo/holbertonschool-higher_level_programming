@@ -1,11 +1,6 @@
 #!/usr/bin/python3
 """
-This script lists all State objects from the database hbtn_0e_6_usa
-
-Args:
-    username (str): The username for the MySQL database
-    password (str): The password for the MySQL database
-    database (str): The name of the MySQL database containing the states
+Script to list all State objects from the database hbtn_0e_6_usa.
 """
 
 import sys
@@ -13,20 +8,44 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from model_state import Base, State
 
+
+def fetch_all_states(username, password, database):
+    """
+    Connects to the MySQL server and lists
+    all State objects from the specified database.
+
+    Args:
+        username (str): MySQL username.
+        password (str): MySQL password.
+        database (str): Database name.
+    """
+    try:
+        # Connect to the MySQL server
+        engine = create_engine(
+            'mysql+mysqldb://{}:{}@localhost:3306/{}'.format(
+                username, password, database
+            ),
+            pool_pre_ping=True
+        )
+        Base.metadata.create_all(engine)
+        Session = sessionmaker(bind=engine)
+        session = Session()
+
+        # Query all State objects and display them
+        states = session.query(State).order_by(State.id).all()
+        for state in states:
+            print("{}: {}".format(state.id, state.name))
+
+        session.close()
+    except Exception as e:
+        print("Error:", e)
+
+
 if __name__ == "__main__":
-    username = sys.argv[1]
-    password = sys.argv[2]
-    database = sys.argv[3]
-
-    engine = create_engine("mysql+mysqldb://{}:{}@localhost:3306/{}".format(
-        username, password, database), pool_pre_ping=True)
-
-    Session = sessionmaker(bind=engine)
-    session = Session()
-
-    states = session.query(State).order_by(State.id).all()
-
-    for state in states:
-        print("{}: {}".format(state.id, state.name))
-
-    session.close()
+    if len(sys.argv) == 4:
+        fetch_all_states(sys.argv[1], sys.argv[2], sys.argv[3])
+    else:
+        print("""
+        Usage: ./7-model_state_fetch_all.py <username> <password>
+        <database>
+        """)
