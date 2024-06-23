@@ -1,2 +1,2 @@
--- Task 2: Script that deletes the database hbtn_0c_0 in MySQL server.
-DROP DATABASE IF EXISTS hbtn_0c_0;
+-- Script creates the hbtn_0c_0 database on MySQL server
+CREATE DATABASE IF NOT EXISTS hbtn_0c_0;
