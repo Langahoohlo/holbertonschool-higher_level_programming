@@ -22,7 +22,7 @@ def generate_invitations(template, attendees):
         sys.exit()
     
     # Arguments cannot be emoty
-    if template is None:
+    if template is "":
         logging.error('Template is empty, no output files generated.')
         sys.exit()
     
