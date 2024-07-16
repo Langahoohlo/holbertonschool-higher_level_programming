@@ -24,11 +24,11 @@ def generate_invitations(template, attendees):
     # Arguments cannot be emoty
     if template is None:
         logging.error('Template is empty, no output files generated.')
-        sys.exit
+        sys.exit()
     
     if attendees is None:
         logging.error('No data provided, no output files generated.')
-        sys.exit
+        sys.exit()
 
     # Iterate in attendees
     for index, attendee in enumerate(attendees, start=1):
