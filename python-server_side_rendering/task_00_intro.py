@@ -34,7 +34,7 @@ def generate_invitations(template, attendees):
     for index, attendee in enumerate(attendees, start=1):
         invitation = template[:]
 
-        # Where its's replace with N/A
+        # Where key is empty replace with N/A
         for key in ["name", "event_title", "event_date", "event_location"]:
             value = attendee.get(key, "N/A") or "N/A"
             invitation = invitation.replace(f"{{{key}}}", value)
