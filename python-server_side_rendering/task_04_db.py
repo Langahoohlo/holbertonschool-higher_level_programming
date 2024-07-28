@@ -34,41 +34,9 @@ def products():
     product_id = request.args.get('id', type=int)
 
     if source == 'json':
-        with open('items.json', 'r') as file:
-            products = json.load(file)
-
-    elif source == 'csv':
-        products = []
-        with open('products.csv', newline='') as csvfile:
-            reader = csv.DictReader(csvfile)
-            for row in reader:
-                row['id'] = int(row['id'])
-                row['price'] = float(row['price'])
-                products.append(row)
-        
-    else:
-        return render_template('product_display.html', error="Wrong source")
-
-    if product_id:
-        filtered_products = []
-        for product in products:
-            if product['id'] == product_id:
-                filtered_products.append(product)
-       
-        if not filtered_products:
-            return render_template('product_display.html', error="Product not found")
-        else:
-            products = filtered_products
-
-    return render_template('product_display.html', products=products)
-@app.route('/products')
-def products():
-    source = request.args.get('source')
-    product_id = request.args.get('id', type=int)
-
-    if source == 'json':
         with open('products.json', 'r') as file:
             products = json.load(file)
+            print(products)
 
     elif source == 'csv':
         products = []
@@ -78,7 +46,7 @@ def products():
                 row['id'] = int(row['id'])
                 row['price'] = float(row['price'])
                 products.append(row)
-        
+
     elif source == 'sql':
         connection = sqlite3.connect('products.db')
         cursor = connection.cursor()
@@ -86,8 +54,8 @@ def products():
         products = cursor.fetchall()
         cursor.close()
         connection.close()
-        products = [{'id': row[0], 'name': row[1], 'price': row[2]} for row in products]
-
+        products = [{'id': row[0], 'name': row[1], 'category': row[2], 'price': row[3]} for row in products]
+        
     else:
         return render_template('product_display.html', error="Wrong source")
 
@@ -103,6 +71,7 @@ def products():
             products = filtered_products
 
     return render_template('product_display.html', products=products)
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

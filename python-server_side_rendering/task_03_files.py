@@ -29,8 +29,9 @@ def products():
     product_id = request.args.get('id', type=int)
 
     if source == 'json':
-        with open('items.json', 'r') as file:
+        with open('products.json', 'r') as file:
             products = json.load(file)
+            print(products)
 
     elif source == 'csv':
         products = []
